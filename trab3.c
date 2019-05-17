@@ -93,7 +93,7 @@ void escravo(){
 	printf("esperando...\n");
 
 	while(1){
-		c = fgetc(rec_socket);
+		c = fgetc((FILE*)rec_socket);
 		printf("%c", c);
 	}
 		printf("recebido\n");
