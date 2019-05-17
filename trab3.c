@@ -34,7 +34,7 @@ void le_entrada(char msg[1501]){
     aux = 1;
     while(aux){
         printf("Digite uma mensagem de 46 ate 1500 caracteres\n");
-        scanf("%s", msg);
+        fgets(msg, 1501, stdin);
         aux1=0;
 
         if (45<strlen(msg) && strlen(msg)<1501){
@@ -68,11 +68,11 @@ void envia(envelope e){
     write(sd_socket, &e, sizeof(e));
     printf("enviado\n");
     e.tam = 1;
-    read(sd_socket, &s, sizeof(e));
+/*    read(sd_socket, &s, sizeof(e));
     printf("lendo\n");
     printf("tams: %d, %d\n", sizeof(s), s.tam);
     printf("%s\n", s.data);
-    printf("lido\n");
+    printf("lido\n");*/
 }
 
 void mestre(){
@@ -86,22 +86,18 @@ void mestre(){
 }
 
 void escravo(){
-	char s[1500];
-	char c;
+	char *buffer = (char *) malloc(40960*sizeof(char));
 	int rec_socket = ConexaoRawSocket("lo");
 
 	printf("esperando...\n");
 
 	while(1){
-		c = fgetc((FILE*)rec_socket);
-		printf("%c", c);
+		read(rec_socket, buffer, 40960);
+	
 	}
-		printf("recebido\n");
-		printf("lido\n");
-	fim_while:
-	printf("cp1\n");
-	printf("%s\n", s);
-	printf("cp2\n");
+	printf("recebido\n");
+    printf("%s\n", buffer);
+	printf("lido\n");
 }
 
 int main(){
