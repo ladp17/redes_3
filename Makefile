@@ -6,7 +6,7 @@ CFLAGS =-Wall \
 all: conexaorawsocket
 
 run: conexaorawsocket
-	./conexaorawsocket
+	sudo ./conexaorawsocket
 
 conexaorawsocket: ConexaoRawSocket.c trab3.c
 	$(CC) $(CFLAGS) -o $@ $^
